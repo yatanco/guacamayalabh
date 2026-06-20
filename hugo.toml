@@ -10,7 +10,7 @@ summaryLength = 30   # used only for the RSS feed and as a meta-description fall
 # Once it's set, themes/papermod-lite/layouts/_partials/head.html wires it in automatically
 # via Hugo's built-in `{{ partial "google_analytics.html" . }}`.
 [services.googleAnalytics]
-  id = ""   # paste your GA4 measurement ID here, e.g. "G-XXXXXXXXXX"
+  id = "G-4DD7K0SWT0"   # paste your GA4 measurement ID here, e.g. "G-XXXXXXXXXX"
 
 # Flat, lowercase URLs: /systems-vs-emotions-in-parenting/ — easy to type,
 # easy to share, no date-stamping content that's meant to stay evergreen.
