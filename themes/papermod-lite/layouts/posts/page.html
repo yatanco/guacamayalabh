@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="post">
+  <p class="post-date">{{ .Date.Format "2 January 2006" }}</p>
+  <h1 class="post-title">{{ .Title }}</h1>
+  {{ with site.Params.author }}<p class="post-byline">by {{ . }}</p>{{ end }}
+  <div class="post-content">{{ .Content }}</div>
+  {{ with .Params.tags }}
+  <p class="post-tags">tags: {{ range . }}<a href="{{ "/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a> {{ end }}</p>
+  {{ end }}
+</article>
+<p class="back-link"><a href="{{ "/" | absURL }}">&larr; {{ site.Params.backLinkText | default "Back" }}</a></p>
+{{ end }}

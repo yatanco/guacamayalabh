@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <p>&copy; {{ now.Year }} {{ site.Params.author | default site.Title }} · <a href="{{ "/index.xml" | absURL }}">RSS</a></p>
+</footer>
+{{ if not site.Params.disableThemeToggle }}
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", function () {
+    var html = document.documentElement;
+    var next = html.dataset.theme === "dark" ? "light" : "dark";
+    html.dataset.theme = next;
+    localStorage.setItem("pref-theme", next);
+  });
+</script>
+{{ end }}

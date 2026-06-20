@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h2 class="section-title">{{ .Title }}</h2>
+<ul class="post-list">
+  {{ range .Pages }}
+  {{ $excerpt := index (split .Content "</p>") 0 | plainify }}
+  <li class="post-list-item">
+    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    <p class="post-meta">{{ .Date.Format "2006-01-02" }} — {{ $excerpt }}</p>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

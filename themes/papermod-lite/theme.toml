@@ -1,0 +1,9 @@
+name = "papermod-lite"
+license = "MIT"
+licenselink = "https://github.com/yourname/papermod-lite/blob/main/LICENSE"
+description = "An ultra-minimal Hugo theme for a personal notebook or small blog: a homepage post list, posts with date/byline/tags, and optional standalone pages. Distilled from PaperMod."
+homepage = "https://github.com/yourname/papermod-lite"
+min_version = "0.146.0"
+
+[author]
+  name = "Yatan"

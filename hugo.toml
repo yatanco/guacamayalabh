@@ -1,0 +1,42 @@
+baseURL = "https://guacamayalab.com/"
+locale = "en-US"            # replaces the deprecated `languageCode` key (deprecated in Hugo v0.158.0)
+title = "Guacamaya Lab"
+theme = "papermod-lite"
+enableRobotsTXT = true
+summaryLength = 30   # used only for the RSS feed and as a meta-description fallback;
+                      # the homepage/list excerpts use the post's first paragraph instead (see theme)
+
+# Drop a real GA4 measurement ID here (looks like G-XXXXXXXXXX).
+# Once it's set, themes/papermod-lite/layouts/_partials/head.html wires it in automatically
+# via Hugo's built-in `{{ partial "google_analytics.html" . }}`.
+[services.googleAnalytics]
+  id = ""   # paste your GA4 measurement ID here, e.g. "G-XXXXXXXXXX"
+
+# Flat, lowercase URLs: /systems-vs-emotions-in-parenting/ — easy to type,
+# easy to share, no date-stamping content that's meant to stay evergreen.
+# Nested-by-page-kind structure is the current (Hugo v0.146+) permalinks syntax;
+# the old flat `permalinks.posts = "..."` form is no longer documented.
+[permalinks]
+  [permalinks.page]
+    posts = "/:slug/"
+
+[pagination]
+  pagerSize = 50
+
+[params]
+  tagline = "An online notebook — unfinished, evolving, honest."
+  description = "Personal notes on parenting, caregiving, and figuring things out."  # meta-description / Open Graph fallback
+  author = "Yatan"
+  aboutURL = "https://yatan.co"
+  defaultTheme = "auto"        # "auto" follows OS preference; or force "light" / "dark"
+  disableThemeToggle = false
+
+[[menu.main]]
+  name = "About"
+  url = "https://yatan.co"
+  weight = 1
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false

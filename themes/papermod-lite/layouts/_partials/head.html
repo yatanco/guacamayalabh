@@ -1,0 +1,66 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  {{- $desc := "" }}
+  {{- if .Description }}{{ $desc = .Description }}
+  {{- else if .Summary }}{{ $desc = .Summary | plainify | truncate 160 }}
+  {{- else }}{{ $desc = site.Params.description | default site.Params.tagline }}
+  {{- end }}
+  {{ with $desc }}<meta name="description" content="{{ . }}">{{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="alternate" type="application/rss+xml" href="{{ "/index.xml" | absURL }}" title="{{ site.Title }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+
+  {{/* Hugo's own maintained Open Graph + Twitter Card partials — these handle
+       fallback chains (description → summary → site description), og:locale,
+       article:published_time, image discovery, etc. more robustly than a
+       hand-rolled version would. Configured via site.Params.description and
+       (optionally) site.Params.social.twitter in hugo.toml. */}}
+  {{ partial "opengraph.html" . }}
+  {{ partial "twitter_cards.html" . }}
+
+  {{/* Minimal BlogPosting JSON-LD — the handful of fields that matter for
+       search/AI parsing. Hugo ships a built-in "schema.html" partial too, but
+       it emits microdata rather than JSON-LD; JSON-LD is the currently
+       preferred structured-data format, so this stays hand-rolled and
+       deliberately small rather than switching to the built-in. */}}
+  {{ if eq .Type "posts" }}
+  {{- $jsonld := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "author" (dict "@type" "Person" "name" site.Params.author)
+    "url" .Permalink
+  -}}
+  <script type="application/ld+json">{{ $jsonld | jsonify | safeJS }}</script>
+  {{ end }}
+
+  {{/* Anti-flash theme script — runs before paint so there's no flicker
+       from the server-rendered default to the visitor's saved/OS preference.
+       Adapted from hugo-PaperMod (MIT). */}}
+  {{- $theme := site.Params.defaultTheme | default "auto" }}
+  {{- if eq $theme "auto" }}
+  <script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+      document.documentElement.dataset.theme = "dark";
+    } else if (localStorage.getItem("pref-theme") === "light") {
+      document.documentElement.dataset.theme = "light";
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.dataset.theme = "dark";
+    } else {
+      document.documentElement.dataset.theme = "light";
+    }
+  </script>
+  {{- else }}
+  <script>
+    var saved = localStorage.getItem("pref-theme");
+    if (saved && saved !== "{{ $theme }}") {
+      document.documentElement.dataset.theme = saved;
+    }
+  </script>
+  {{- end }}
+
+  {{ partial "google_analytics.html" . }}
+</head>

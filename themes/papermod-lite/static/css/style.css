@@ -1,0 +1,82 @@
+/* ---------- Color variables — swap data-theme="dark" to flip everything ---------- */
+:root {
+  --bg: rgb(253, 253, 251);
+  --primary: rgb(26, 26, 26);
+  --secondary: rgb(107, 107, 107);
+  --border: rgb(229, 229, 224);
+  --link: rgb(26, 95, 180);
+  --code-bg: rgb(244, 244, 240);
+  --max-width: 640px;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: rgb(20, 20, 22);
+  --primary: rgb(222, 222, 222);
+  --secondary: rgb(160, 160, 160);
+  --border: rgb(50, 50, 53);
+  --link: rgb(110, 168, 235);
+  --code-bg: rgb(38, 38, 41);
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--primary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 1.6;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+a { color: var(--link); text-decoration: underline; }
+a:hover { text-decoration: none; }
+main { max-width: var(--max-width); margin: 0 auto; padding: 0 20px 60px; }
+
+/* ---------- Header: centered title, tagline, nav + toggle ---------- */
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 20px 24px;
+  text-align: center;
+}
+.site-title { margin: 0; font-size: 1.7em; }
+.site-title a { text-decoration: none; color: var(--primary); }
+.tagline { color: var(--secondary); margin: 8px 0 16px; font-style: italic; }
+.site-nav { display: flex; justify-content: center; align-items: center; gap: 14px; font-size: 0.95em; }
+.site-nav a { color: var(--secondary); text-decoration: none; }
+.site-nav a:hover { color: var(--link); }
+.site-header-divider { border: none; border-top: 1px solid var(--border); max-width: var(--max-width); margin: 0 auto; }
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary); padding: 2px; display: inline-flex; align-items: center; }
+.theme-toggle:hover { color: var(--link); }
+[data-theme="dark"] .theme-toggle .moon { display: none; }
+[data-theme="light"] .theme-toggle .sun { display: none; }
+
+/* ---------- Post list (home + tag pages) ---------- */
+.section-title { font-size: 1.05em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--secondary); margin-top: 36px; }
+.post-list { list-style: none; padding: 0; }
+.post-list-item { margin: 28px 0; }
+.post-list-item h3 { margin: 0 0 4px; font-size: 1.2em; }
+.post-list-item h3 a { color: var(--primary); }
+.post-meta { color: var(--secondary); margin: 0; font-size: 0.95em; }
+
+/* ---------- Single post ---------- */
+.post-date { color: var(--secondary); margin-bottom: 0; }
+.post-title { margin-top: 4px; font-size: 1.5em; }
+.post-byline { color: var(--secondary); font-style: italic; margin-top: 0; }
+.post-content blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 3px solid var(--border); color: var(--secondary); }
+.post-content table { border-collapse: collapse; width: 100%; }
+.post-content th, .post-content td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+.post-content pre, .post-content code { background: var(--code-bg); font-size: 0.9em; }
+.post-tags { color: var(--secondary); font-size: 0.9em; margin-top: 32px; }
+.back-link { margin-top: 40px; }
+
+/* ---------- Optional intro content (_index.md body shown above post list) ---------- */
+.page-content { margin-top: 18px; }
+.page-content :first-child { margin-top: 0; }
+
+/* ---------- Footer ---------- */
+.site-footer { max-width: var(--max-width); margin: 40px auto 0; padding: 20px 20px 40px; text-align: center; color: var(--secondary); font-size: 0.85em; }

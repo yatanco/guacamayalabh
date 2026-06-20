@@ -1,0 +1,11 @@
+{{/* Generic page template — used for anything outside content/posts/
+     (e.g. content/about.md). No date, byline, or tags: just title + content.
+     Reuses .post / .post-title classes so it matches the post template's
+     typography exactly with zero extra CSS. */}}
+{{ define "main" }}
+<article class="post">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <div class="post-content">{{ .Content }}</div>
+</article>
+<p class="back-link"><a href="{{ "/" | absURL }}">&larr; {{ site.Params.backLinkText | default "Back" }}</a></p>
+{{ end }}
