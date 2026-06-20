@@ -10,7 +10,7 @@
   {{ with $desc }}<meta name="description" content="{{ . }}">{{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="alternate" type="application/rss+xml" href="{{ "/index.xml" | absURL }}" title="{{ site.Title }}">
-  <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+  <style>{{ (resources.Get "css/style.css").Content | safeCSS }}</style>
 
   {{/* Hugo's own maintained Open Graph + Twitter Card partials — these handle
        fallback chains (description → summary → site description), og:locale,

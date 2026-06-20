@@ -1,0 +1,8 @@
+# {{ site.Title }}
+
+> {{ site.Params.tagline }}
+
+## Posts
+{{ range where site.RegularPages "Type" "posts" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ index (split .Content "</p>") 0 | plainify | htmlUnescape }}
+{{ end }}

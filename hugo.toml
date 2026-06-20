@@ -12,6 +12,15 @@ summaryLength = 30   # used only for the RSS feed and as a meta-description fall
 [services.googleAnalytics]
   id = "G-4DD7K0SWT0"   # paste your GA4 measurement ID here, e.g. "G-XXXXXXXXXX"
 
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true  # don't add <link rel="alternate"> in HTML output
+
+[outputs]
+  home = ["HTML", "RSS", "LLMS"]
+
 # Flat, lowercase URLs: /systems-vs-emotions-in-parenting/ — easy to type,
 # easy to share, no date-stamping content that's meant to stay evergreen.
 # Nested-by-page-kind structure is the current (Hugo v0.146+) permalinks syntax;
